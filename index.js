@@ -9,11 +9,16 @@ const btn_tweet = document.querySelector('.btn-tweet');
 
 const loader = document.querySelector('.loader');
 
+// show loader spinner
 function loading(){
-    loader.hidden = false;
-    quote_container.hidden = true;
+    if(!loader.hidden){
+
+        loader.hidden = false;
+        quote_container.hidden = true;
+    }
 }
 
+// hide loader spinner
 function stopLoading(){
     loader.hidden = true;
     quote_container.hidden = false;
@@ -22,7 +27,7 @@ function stopLoading(){
 // loading()
 
 function newQuote(){
-    
+
         loading()
     // Pick a random quote from quotes array
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
