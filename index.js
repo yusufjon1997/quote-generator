@@ -1,13 +1,29 @@
 
 let quotes = [];
 
+const quote_container = document.querySelector('.quote-container')
 const quote_text = document.querySelector('.quote');
 const quote_author = document.querySelector('.author');
 const btn_new_quote = document.querySelector('.btn-new-quote');
 const btn_tweet = document.querySelector('.btn-tweet');
 
+const loader = document.querySelector('.loader');
+
+function loading(){
+    loader.hidden = false;
+    quote_container.hidden = true;
+}
+
+function stopLoading(){
+    loader.hidden = true;
+    quote_container.hidden = false;
+}
+
+// loading()
 
 function newQuote(){
+    
+        loading()
     // Pick a random quote from quotes array
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
@@ -26,12 +42,14 @@ function newQuote(){
     }
 
     quote_text.textContent = quote.text;
+    stopLoading()
 }
 
 
 
 // Get quotes from API 
 async function getQuotes(){
+    loading()
     const api_url = 'https://type.fit/api/quotes';  
     try {
         const response = await fetch(api_url);
